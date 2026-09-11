@@ -8,26 +8,53 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous">
     <style>
-        /* ========== MODERN ROOT VARIABLES ========== */
+        /* ========== DEEP USER-FRIENDLY ROOT VARIABLES ========== */
         :root {
-            --bg: #f8f7f4;
+            /* Calm, accessible background */
+            --bg: #f7f6f3;
             --bg-card: #ffffff;
+            --bg-elevated: #ffffff;
+            
+            /* Deep, trustworthy primary */
             --primary: #1a1a2e;
             --primary-light: #2d2d44;
+            --primary-soft: #eeeef5;
+            
+            /* Warm, inviting accent */
             --accent: #e07a5f;
-            --accent-light: #fef0ec;
+            --accent-light: #fef3f0;
+            --accent-soft: #fce9e4;
             --accent-dark: #c05a3e;
-            --muted: #6b6b7a;
-            --muted-light: #a0a0b0;
-            --surface: #f0efed;
+            
+            /* Readable muted tones */
+            --muted: #5f5f6f;
+            --muted-light: #8f8f9f;
+            --muted-soft: #b8b8c8;
+            
+            /* Functional surfaces */
+            --surface: #f2f1ee;
+            --surface-hover: #eae9e6;
             --success: #2a9d8f;
+            --success-light: #e6f4f1;
             --warning: #e9c46a;
-            --radius: 24px;
+            --warning-light: #fdf6e3;
+            
+            /* Generous spacing & radii */
+            --radius: 20px;
             --radius-sm: 14px;
-            --shadow-sm: 0 2px 12px rgba(26, 26, 46, 0.04);
-            --shadow: 0 8px 32px rgba(26, 26, 46, 0.06);
-            --shadow-hover: 0 20px 48px rgba(26, 26, 46, 0.10);
-            --transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            --radius-xs: 10px;
+            
+            /* Soft, layered shadows */
+            --shadow-xs: 0 1px 4px rgba(26, 26, 46, 0.03);
+            --shadow-sm: 0 2px 12px rgba(26, 26, 46, 0.05);
+            --shadow: 0 8px 32px rgba(26, 26, 46, 0.07);
+            --shadow-hover: 0 16px 48px rgba(26, 26, 46, 0.10);
+            --shadow-focus: 0 0 0 4px rgba(224, 122, 95, 0.15);
+            
+            /* Smooth transitions */
+            --transition: 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+            --transition-slow: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            
             --container: 1280px;
         }
 
@@ -39,14 +66,16 @@
         }
         html {
             scroll-behavior: smooth;
+            -webkit-text-size-adjust: 100%;
         }
         body {
             font-family: 'Inter', system-ui, -apple-system, sans-serif;
             background: var(--bg);
             color: var(--primary);
-            line-height: 1.5;
+            line-height: 1.6;
             -webkit-font-smoothing: antialiased;
             -moz-osx-font-smoothing: grayscale;
+            font-size: 15px;
         }
         a {
             color: inherit;
@@ -62,9 +91,17 @@
             border: none;
             background: none;
             color: inherit;
+            font-size: inherit;
+        }
+        button:focus-visible,
+        a:focus-visible,
+        input:focus-visible {
+            outline: 2px solid var(--accent);
+            outline-offset: 2px;
         }
         input {
             font-family: inherit;
+            font-size: inherit;
         }
         .container {
             width: 100%;
@@ -88,7 +125,7 @@
             border: 0;
         }
 
-        /* ========== BUTTONS ========== */
+        /* ========== BUTTONS — Clear, tactile, accessible ========== */
         .btn {
             display: inline-flex;
             align-items: center;
@@ -101,6 +138,12 @@
             transition: var(--transition);
             border: 2px solid transparent;
             letter-spacing: -0.2px;
+            white-space: nowrap;
+            min-height: 48px;
+            user-select: none;
+        }
+        .btn:active {
+            transform: scale(0.98);
         }
         .btn-primary {
             background: var(--accent);
@@ -112,7 +155,7 @@
             background: var(--accent-dark);
             border-color: var(--accent-dark);
             transform: translateY(-2px);
-            box-shadow: 0 12px 32px rgba(224, 122, 95, 0.35);
+            box-shadow: 0 8px 24px rgba(224, 122, 95, 0.35);
         }
         .btn-secondary {
             background: var(--primary);
@@ -124,12 +167,12 @@
             background: var(--primary-light);
             border-color: var(--primary-light);
             transform: translateY(-2px);
-            box-shadow: 0 12px 32px rgba(26, 26, 46, 0.25);
+            box-shadow: 0 8px 24px rgba(26, 26, 46, 0.25);
         }
         .btn-outline {
             background: transparent;
             color: var(--primary);
-            border-color: rgba(26, 26, 46, 0.12);
+            border-color: rgba(26, 26, 46, 0.15);
         }
         .btn-outline:hover {
             background: var(--primary);
@@ -138,30 +181,31 @@
             transform: translateY(-2px);
         }
         .btn-ghost {
-            background: rgba(255, 255, 255, 0.12);
+            background: rgba(255, 255, 255, 0.14);
             color: #fff;
-            border-color: rgba(255, 255, 255, 0.2);
+            border-color: rgba(255, 255, 255, 0.25);
             backdrop-filter: blur(8px);
         }
         .btn-ghost:hover {
-            background: rgba(255, 255, 255, 0.22);
-            border-color: rgba(255, 255, 255, 0.4);
+            background: rgba(255, 255, 255, 0.24);
+            border-color: rgba(255, 255, 255, 0.45);
             transform: translateY(-2px);
         }
         .btn-sm {
             padding: 10px 22px;
             font-size: 13px;
+            min-height: 40px;
         }
 
-        /* ========== HEADER — Modern Glass ========== */
+        /* ========== HEADER — Calm, glass, always accessible ========== */
         header {
             position: sticky;
             top: 0;
             z-index: 100;
-            background: rgba(255, 255, 255, 0.88);
+            background: rgba(255, 255, 255, 0.92);
             backdrop-filter: blur(20px) saturate(1.8);
             -webkit-backdrop-filter: blur(20px) saturate(1.8);
-            border-bottom: 1px solid rgba(26, 26, 46, 0.04);
+            border-bottom: 1px solid rgba(26, 26, 46, 0.05);
             transition: var(--transition);
         }
         .header-inner {
@@ -169,8 +213,8 @@
             align-items: center;
             justify-content: space-between;
             gap: 16px;
-            padding: 14px 0;
-            min-height: 76px;
+            padding: 12px 0;
+            min-height: 72px;
         }
 
         .brand {
@@ -178,21 +222,22 @@
             align-items: center;
             gap: 10px;
             font-weight: 800;
-            font-size: 22px;
+            font-size: 21px;
             letter-spacing: -0.6px;
             color: var(--primary);
             flex-shrink: 0;
+            padding: 4px 0;
         }
         .brand .accent {
             color: var(--accent);
         }
         .brand i {
-            font-size: 26px;
+            font-size: 25px;
             color: var(--accent);
             transition: var(--transition);
         }
         .brand:hover i {
-            transform: rotate(-8deg) scale(1.05);
+            transform: rotate(-8deg) scale(1.08);
         }
 
         nav.main-nav ul {
@@ -212,6 +257,7 @@
             color: var(--muted);
             transition: var(--transition);
             position: relative;
+            min-height: 40px;
         }
         nav.main-nav li a:hover,
         nav.main-nav li a.active {
@@ -227,7 +273,7 @@
         .header-actions {
             display: flex;
             align-items: center;
-            gap: 4px;
+            gap: 2px;
             flex-shrink: 0;
         }
         .header-actions .icon-btn {
@@ -281,7 +327,7 @@
         .search-wrap:focus-within {
             border-color: var(--accent);
             background: #fff;
-            box-shadow: 0 0 0 5px rgba(224, 122, 95, 0.08);
+            box-shadow: var(--shadow-focus);
         }
         .search-wrap input {
             border: 0;
@@ -323,7 +369,7 @@
         #mobileMenu {
             display: none;
             background: #fff;
-            border-top: 1px solid rgba(26, 26, 46, 0.04);
+            border-top: 1px solid rgba(26, 26, 46, 0.05);
             padding: 12px 0 24px;
             box-shadow: var(--shadow-sm);
         }
@@ -342,6 +388,7 @@
             font-weight: 500;
             color: var(--primary);
             transition: var(--transition);
+            min-height: 52px;
         }
         #mobileMenu ul li a:hover {
             background: var(--surface);
@@ -352,13 +399,13 @@
             font-size: 16px;
         }
 
-        /* ========== HERO — Modern Gradient ========== */
+        /* ========== HERO — Welcoming, spacious, clear ========== */
         .hero {
             position: relative;
             display: flex;
             align-items: center;
-            min-height: 560px;
-            padding: 80px 0;
+            min-height: 520px;
+            padding: 72px 0;
             border-radius: var(--radius);
             overflow: hidden;
             margin: 20px 24px 0;
@@ -369,14 +416,14 @@
             position: absolute;
             inset: 0;
             background: url('https://images.unsplash.com/photo-1555529669-e69e7aa0ba9a?auto=format&fit=crop&w=1400&q=80') center/cover no-repeat;
-            opacity: 0.25;
+            opacity: 0.22;
             z-index: 0;
         }
         .hero::after {
             content: '';
             position: absolute;
             inset: 0;
-            background: radial-gradient(ellipse at 30% 50%, rgba(224, 122, 95, 0.15) 0%, transparent 60%);
+            background: radial-gradient(ellipse at 30% 50%, rgba(224, 122, 95, 0.14) 0%, transparent 60%);
             z-index: 0;
         }
         .hero .container {
@@ -384,9 +431,11 @@
             z-index: 1;
         }
         .hero .badge {
-            display: inline-block;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
             background: rgba(224, 122, 95, 0.18);
-            color: var(--accent-light);
+            color: var(--accent-soft);
             padding: 8px 20px;
             border-radius: 999px;
             font-weight: 600;
@@ -398,7 +447,7 @@
         }
         .hero h1 {
             font-family: 'Playfair Display', serif;
-            font-size: 56px;
+            font-size: 54px;
             font-weight: 700;
             color: #fff;
             line-height: 1.12;
@@ -407,7 +456,7 @@
             letter-spacing: -1px;
         }
         .hero p {
-            color: rgba(255, 255, 255, 0.82);
+            color: rgba(255, 255, 255, 0.85);
             font-size: 18px;
             max-width: 520px;
             margin-bottom: 36px;
@@ -415,20 +464,20 @@
         }
         .hero .actions {
             display: flex;
-            gap: 16px;
+            gap: 14px;
             flex-wrap: wrap;
         }
 
-        /* ========== SECTION ========== */
+        /* ========== SECTION — Generous breathing room ========== */
         .section {
-            padding: 72px 0;
+            padding: 80px 0;
         }
         .section-header {
             display: flex;
             align-items: flex-end;
             justify-content: space-between;
             gap: 16px;
-            margin-bottom: 44px;
+            margin-bottom: 48px;
             flex-wrap: wrap;
         }
         .section-header .title-group h2 {
@@ -441,6 +490,7 @@
             color: var(--muted);
             margin-top: 8px;
             font-size: 15px;
+            line-height: 1.6;
         }
         .section-header .view-all {
             font-weight: 600;
@@ -452,24 +502,25 @@
             transition: var(--transition);
             white-space: nowrap;
             padding: 8px 0;
+            min-height: 40px;
         }
         .section-header .view-all:hover {
             gap: 14px;
             color: var(--accent-dark);
         }
 
-        /* ========== CATEGORIES — Modern Cards ========== */
+        /* ========== CATEGORIES — Friendly, scannable ========== */
         .categories-grid {
             display: grid;
             grid-template-columns: repeat(6, 1fr);
-            gap: 20px;
+            gap: 18px;
         }
         .cat-card {
             background: var(--bg-card);
             border-radius: var(--radius);
             padding: 32px 18px;
             text-align: center;
-            box-shadow: var(--shadow-sm);
+            box-shadow: var(--shadow-xs);
             transition: var(--transition);
             cursor: pointer;
             border: 2px solid transparent;
@@ -493,7 +544,7 @@
         .cat-card:hover {
             transform: translateY(-8px);
             box-shadow: var(--shadow-hover);
-            border-color: var(--accent-light);
+            border-color: var(--accent-soft);
         }
         .cat-card .icon-wrap {
             width: 64px;
@@ -516,6 +567,7 @@
             font-size: 15px;
             font-weight: 600;
             letter-spacing: -0.2px;
+            line-height: 1.3;
         }
         .cat-card .count {
             font-size: 13px;
@@ -524,7 +576,7 @@
             font-weight: 500;
         }
 
-        /* ========== PRODUCTS — Modern Cards ========== */
+        /* ========== PRODUCTS — Clear, trustworthy cards ========== */
         .products-grid {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
@@ -534,7 +586,7 @@
             background: var(--bg-card);
             border-radius: var(--radius);
             overflow: hidden;
-            box-shadow: var(--shadow-sm);
+            box-shadow: var(--shadow-xs);
             transition: var(--transition);
             display: flex;
             flex-direction: column;
@@ -544,7 +596,7 @@
         .product-card:hover {
             transform: translateY(-8px);
             box-shadow: var(--shadow-hover);
-            border-color: var(--accent-light);
+            border-color: var(--accent-soft);
         }
         .product-card .img-wrap {
             position: relative;
@@ -556,7 +608,7 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
-            transition: var(--transition);
+            transition: var(--transition-slow);
         }
         .product-card:hover .img-wrap img {
             transform: scale(1.06);
@@ -586,7 +638,7 @@
             width: 40px;
             height: 40px;
             border-radius: 50%;
-            background: rgba(255, 255, 255, 0.92);
+            background: rgba(255, 255, 255, 0.94);
             display: grid;
             place-items: center;
             font-size: 16px;
@@ -672,17 +724,21 @@
             justify-content: center;
             gap: 8px;
             letter-spacing: -0.2px;
+            min-height: 48px;
         }
         .product-card .footer .add-btn:hover {
             background: var(--accent);
             transform: scale(1.02);
             box-shadow: 0 6px 20px rgba(224, 122, 95, 0.3);
         }
+        .product-card .footer .add-btn:active {
+            transform: scale(0.98);
+        }
         .product-card .footer .add-btn.added {
             background: var(--success);
         }
 
-        /* ========== DEAL — Modern Split ========== */
+        /* ========== DEAL — Clear, urgent, friendly ========== */
         .deal-wrap {
             display: flex;
             gap: 0;
@@ -709,8 +765,10 @@
             justify-content: center;
         }
         .deal-wrap .deal-content .tag {
-            display: inline-block;
-            background: var(--warning);
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: var(--warning-light);
             color: var(--primary);
             padding: 6px 18px;
             border-radius: 999px;
@@ -726,6 +784,7 @@
             font-weight: 700;
             margin-bottom: 10px;
             letter-spacing: -0.6px;
+            line-height: 1.2;
         }
         .deal-wrap .deal-content .desc {
             color: var(--muted);
@@ -785,7 +844,7 @@
             margin-top: 2px;
         }
 
-        /* ========== TESTIMONIALS — Modern Cards ========== */
+        /* ========== TESTIMONIALS — Warm, social proof ========== */
         .testimonials-scroll {
             display: flex;
             gap: 24px;
@@ -813,14 +872,14 @@
             background: var(--bg-card);
             border-radius: var(--radius);
             padding: 32px 34px;
-            box-shadow: var(--shadow-sm);
+            box-shadow: var(--shadow-xs);
             scroll-snap-align: start;
             transition: var(--transition);
             border: 2px solid transparent;
         }
         .testimonial-card:hover {
             box-shadow: var(--shadow-hover);
-            border-color: var(--accent-light);
+            border-color: var(--accent-soft);
             transform: translateY(-4px);
         }
         .testimonial-card .stars {
@@ -861,7 +920,7 @@
             margin-top: 2px;
         }
 
-        /* ========== NEWSLETTER — Modern Gradient ========== */
+        /* ========== NEWSLETTER — Inviting, clear value ========== */
         .newsletter-wrap {
             background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 50%, #3d3d5c 100%);
             border-radius: var(--radius);
@@ -893,7 +952,7 @@
             letter-spacing: -0.6px;
         }
         .newsletter-wrap .text p {
-            opacity: 0.75;
+            opacity: 0.8;
             font-size: 16px;
             line-height: 1.6;
         }
@@ -919,7 +978,7 @@
             outline: 2px solid transparent;
         }
         .newsletter-wrap form input::placeholder {
-            color: rgba(255, 255, 255, 0.5);
+            color: rgba(255, 255, 255, 0.55);
         }
         .newsletter-wrap form input:focus {
             outline-color: var(--accent);
@@ -944,13 +1003,14 @@
             opacity: 0.9;
             width: 100%;
             transition: var(--transition);
+            font-weight: 500;
         }
 
-        /* ========== FOOTER — Modern Clean ========== */
+        /* ========== FOOTER — Grounding, easy to scan ========== */
         footer {
             margin-top: 32px;
             padding: 64px 0 36px;
-            border-top: 1px solid rgba(26, 26, 46, 0.04);
+            border-top: 1px solid rgba(26, 26, 46, 0.05);
         }
         .footer-grid {
             display: grid;
@@ -1008,6 +1068,7 @@
             font-size: 14px;
             transition: var(--transition);
             display: inline-block;
+            padding: 2px 0;
         }
         .footer-grid .col ul li a:hover {
             color: var(--accent);
@@ -1016,12 +1077,12 @@
         .footer-bottom {
             text-align: center;
             padding-top: 28px;
-            border-top: 1px solid rgba(26, 26, 46, 0.04);
+            border-top: 1px solid rgba(26, 26, 46, 0.05);
             color: var(--muted-light);
             font-size: 13px;
         }
 
-        /* ========== RESPONSIVE ========== */
+        /* ========== RESPONSIVE — Thoughtful breakpoints ========== */
         @media (max-width: 1200px) {
             .products-grid {
                 grid-template-columns: repeat(3, 1fr);
@@ -1219,6 +1280,18 @@
                 font-size: 13px;
             }
         }
+
+        /* ========== ACCESSIBILITY — Reduced motion ========== */
+        @media (prefers-reduced-motion: reduce) {
+            *,
+            *::before,
+            *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+                scroll-behavior: auto !important;
+            }
+        }
     </style>
 </head>
 
@@ -1228,39 +1301,40 @@
     <header>
         <div class="container header-inner">
             <div style="display:flex;align-items:center;gap:12px;">
-                <button class="mobile-toggle" id="mobileToggle" aria-label="Toggle menu">
+                <button class="mobile-toggle" id="mobileToggle" aria-label="Toggle menu" aria-expanded="false">
                     <i class="fas fa-bars"></i>
                 </button>
-                <a class="brand" href="#">
-                    <i class="fas fa-store-alt"></i>
+                <a class="brand" href="#" aria-label="NexusShop home">
+                    <i class="fas fa-store-alt" aria-hidden="true"></i>
                     <span>Nexus<span class="accent">Shop</span></span>
                 </a>
             </div>
 
             <nav class="main-nav" id="mainNav" aria-label="Main navigation">
                 <ul>
-                    <li><a href="#" class="active"><i class="fas fa-home"></i> Home</a></li>
-                    <li><a href="#categories"><i class="fas fa-th-large"></i> Categories</a></li>
-                    <li><a href="#products"><i class="fas fa-fire"></i> Trending</a></li>
-                    <li><a href="#deals"><i class="fas fa-tag"></i> Deals</a></li>
-                    <li><a href="#testimonials"><i class="fas fa-star"></i> Reviews</a></li>
+                    <li><a href="#" class="active" aria-current="page"><i class="fas fa-home" aria-hidden="true"></i> Home</a></li>
+                    <li><a href="#categories"><i class="fas fa-th-large" aria-hidden="true"></i> Categories</a></li>
+                    <li><a href="#products"><i class="fas fa-fire" aria-hidden="true"></i> Trending</a></li>
+                    <li><a href="#deals"><i class="fas fa-tag" aria-hidden="true"></i> Deals</a></li>
+                    <li><a href="#testimonials"><i class="fas fa-star" aria-hidden="true"></i> Reviews</a></li>
                 </ul>
             </nav>
 
             <div style="display:flex;align-items:center;gap:10px;">
                 <div class="search-wrap" role="search">
-                    <input type="search" id="searchInput" placeholder="Search products..." aria-label="Search" />
-                    <button id="searchBtn" aria-label="Submit search"><i class="fas fa-search"></i></button>
+                    <label for="searchInput" class="sr-only">Search products</label>
+                    <input type="search" id="searchInput" placeholder="Search products..." aria-label="Search products" />
+                    <button id="searchBtn" aria-label="Submit search"><i class="fas fa-search" aria-hidden="true"></i></button>
                 </div>
 
                 <div class="header-actions">
-                    <button class="icon-btn" title="Account" aria-label="Account"><i class="far fa-user"></i></button>
-                    <button class="icon-btn" title="Wishlist" aria-label="Wishlist"><i class="far fa-heart"></i></button>
+                    <button class="icon-btn" title="Account" aria-label="Account"><i class="far fa-user" aria-hidden="true"></i></button>
+                    <button class="icon-btn" title="Wishlist" aria-label="Wishlist"><i class="far fa-heart" aria-hidden="true"></i></button>
                     <div class="cart-wrap">
-                        <button class="icon-btn" id="cartBtn" title="Cart" aria-label="Cart">
-                            <i class="fas fa-shopping-bag"></i>
+                        <button class="icon-btn" id="cartBtn" title="Cart" aria-label="Shopping cart">
+                            <i class="fas fa-shopping-bag" aria-hidden="true"></i>
                         </button>
-                        <span class="cart-count" id="cartCount">0</span>
+                        <span class="cart-count" id="cartCount" aria-live="polite">0</span>
                     </div>
                 </div>
             </div>
@@ -1270,13 +1344,13 @@
         <div id="mobileMenu">
             <div class="container">
                 <ul>
-                    <li><a href="#"><i class="fas fa-home"></i> Home</a></li>
-                    <li><a href="#categories"><i class="fas fa-th-large"></i> Categories</a></li>
-                    <li><a href="#products"><i class="fas fa-fire"></i> Trending</a></li>
-                    <li><a href="#deals"><i class="fas fa-tag"></i> Deals</a></li>
-                    <li><a href="#testimonials"><i class="fas fa-star"></i> Reviews</a></li>
-                    <li><a href="#"><i class="far fa-user"></i> Account</a></li>
-                    <li><a href="#"><i class="far fa-heart"></i> Wishlist</a></li>
+                    <li><a href="#"><i class="fas fa-home" aria-hidden="true"></i> Home</a></li>
+                    <li><a href="#categories"><i class="fas fa-th-large" aria-hidden="true"></i> Categories</a></li>
+                    <li><a href="#products"><i class="fas fa-fire" aria-hidden="true"></i> Trending</a></li>
+                    <li><a href="#deals"><i class="fas fa-tag" aria-hidden="true"></i> Deals</a></li>
+                    <li><a href="#testimonials"><i class="fas fa-star" aria-hidden="true"></i> Reviews</a></li>
+                    <li><a href="#"><i class="far fa-user" aria-hidden="true"></i> Account</a></li>
+                    <li><a href="#"><i class="far fa-heart" aria-hidden="true"></i> Wishlist</a></li>
                 </ul>
             </div>
         </div>
@@ -1288,12 +1362,12 @@
         <!-- HERO -->
         <section class="hero" aria-label="Hero banner">
             <div class="container">
-                <div class="badge"><i class="fas fa-sparkles"></i> New Collection 2026</div>
+                <div class="badge"><i class="fas fa-sparkles" aria-hidden="true"></i> New Collection 2026</div>
                 <h1>Discover Premium <br>Essentials</h1>
                 <p>Curated fashion, tech & accessories with free shipping on your first order. Limited-time deals await.</p>
                 <div class="actions">
-                    <button class="btn btn-primary" id="shopNow"><i class="fas fa-arrow-right"></i> Shop Now</button>
-                    <button class="btn btn-ghost" id="exploreDeals"><i class="fas fa-clock"></i> Explore Deals</button>
+                    <button class="btn btn-primary" id="shopNow"><i class="fas fa-arrow-right" aria-hidden="true"></i> Shop Now</button>
+                    <button class="btn btn-ghost" id="exploreDeals"><i class="fas fa-clock" aria-hidden="true"></i> Explore Deals</button>
                 </div>
             </div>
         </section>
@@ -1306,7 +1380,7 @@
                         <h2 id="cat-title">Browse Categories</h2>
                         <p>Find exactly what you're looking for</p>
                     </div>
-                    <a href="#" class="view-all">All Categories <i class="fas fa-arrow-right"></i></a>
+                    <a href="#" class="view-all">All Categories <i class="fas fa-arrow-right" aria-hidden="true"></i></a>
                 </div>
                 <div class="categories-grid" id="categoriesGrid" aria-live="polite"></div>
             </div>
@@ -1320,7 +1394,7 @@
                         <h2 id="prod-title">Trending Now</h2>
                         <p>What's hot — popular picks from our community</p>
                     </div>
-                    <a href="#" class="view-all">View All <i class="fas fa-arrow-right"></i></a>
+                    <a href="#" class="view-all">View All <i class="fas fa-arrow-right" aria-hidden="true"></i></a>
                 </div>
                 <div class="products-grid" id="productsGrid" aria-live="polite"></div>
             </div>
@@ -1340,14 +1414,14 @@
                         <img src="https://images.unsplash.com/photo-1517336714731-489689fd1ca8?auto=format&fit=crop&w=800&q=80" alt="MacBook Air M2" loading="lazy">
                     </div>
                     <div class="deal-content">
-                        <span class="tag"><i class="fas fa-bolt"></i> Limited Offer</span>
+                        <span class="tag"><i class="fas fa-bolt" aria-hidden="true"></i> Limited Offer</span>
                         <h3>MacBook Air M2</h3>
                         <p class="desc">Thin, light, and incredibly powerful — the M2 chip redefines performance.</p>
                         <div>
                             <span class="price-big">$999 <span class="old">$1,199</span></span>
                         </div>
                         <p class="stock">Only <strong>12</strong> items left — hurry!</p>
-                        <div class="timer-grid" id="dealTimer">
+                        <div class="timer-grid" id="dealTimer" aria-label="Deal countdown timer">
                             <div class="timer-box">
                                 <div class="num" id="dealDays">0</div>
                                 <div class="label">Days</div>
@@ -1365,7 +1439,7 @@
                                 <div class="label">Secs</div>
                             </div>
                         </div>
-                        <button class="btn btn-primary" id="buyDeal"><i class="fas fa-cart-plus"></i> Add to Cart</button>
+                        <button class="btn btn-primary" id="buyDeal"><i class="fas fa-cart-plus" aria-hidden="true"></i> Add to Cart</button>
                     </div>
                 </div>
             </div>
@@ -1393,9 +1467,10 @@
                         <p>Get exclusive offers, early access & new arrivals</p>
                     </div>
                     <form id="newsletterForm" onsubmit="return false;">
-                        <input type="email" id="newsletterEmail" placeholder="Enter your email" aria-label="Email" required />
-                        <button class="btn" id="subscribeBtn"><i class="fas fa-paper-plane"></i> Subscribe</button>
-                        <div id="newsletterMsg"></div>
+                        <label for="newsletterEmail" class="sr-only">Email address</label>
+                        <input type="email" id="newsletterEmail" placeholder="Enter your email" aria-label="Email address" required />
+                        <button class="btn" id="subscribeBtn"><i class="fas fa-paper-plane" aria-hidden="true"></i> Subscribe</button>
+                        <div id="newsletterMsg" role="status" aria-live="polite"></div>
                     </form>
                 </div>
             </div>
@@ -1409,15 +1484,15 @@
             <div class="footer-grid">
                 <div class="brand-col">
                     <div class="brand">
-                        <i class="fas fa-store-alt"></i>
+                        <i class="fas fa-store-alt" aria-hidden="true"></i>
                         <span>Nexus<span class="accent">Shop</span></span>
                     </div>
                     <p>Modern e‑commerce demo built with care. Quality products, seamless experience.</p>
                     <div class="socials">
-                        <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
-                        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-                        <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                        <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f" aria-hidden="true"></i></a>
+                        <a href="#" aria-label="Twitter"><i class="fab fa-twitter" aria-hidden="true"></i></a>
+                        <a href="#" aria-label="Instagram"><i class="fab fa-instagram" aria-hidden="true"></i></a>
+                        <a href="#" aria-label="YouTube"><i class="fab fa-youtube" aria-hidden="true"></i></a>
                     </div>
                 </div>
                 <div class="col">
@@ -1548,8 +1623,11 @@
             CATEGORIES.forEach(cat => {
                 const el = document.createElement('div');
                 el.className = 'cat-card';
+                el.setAttribute('role', 'button');
+                el.setAttribute('tabindex', '0');
+                el.setAttribute('aria-label', `Browse ${cat.name} — ${cat.count} items`);
                 el.innerHTML = `
-                    <div class="icon-wrap"><i class="fas ${cat.icon}"></i></div>
+                    <div class="icon-wrap"><i class="fas ${cat.icon}" aria-hidden="true"></i></div>
                     <h4>${cat.name}</h4>
                     <div class="count">${cat.count} items</div>
                 `;
@@ -1557,6 +1635,12 @@
                     searchInput.value = cat.name;
                     filterProducts(cat.name);
                     document.getElementById('products').scrollIntoView({ behavior: 'smooth', block: 'start' });
+                });
+                el.addEventListener('keydown', (e) => {
+                    if (e.key === 'Enter' || e.key === ' ') {
+                        e.preventDefault();
+                        el.click();
+                    }
                 });
                 categoriesGrid.appendChild(el);
             });
@@ -1566,7 +1650,7 @@
             productsGrid.innerHTML = '';
             if (!list.length) {
                 productsGrid.innerHTML =
-                `<p style="grid-column:1/-1;text-align:center;padding:48px;color:var(--muted);font-size:16px;">No products found.</p>`;
+                `<p style="grid-column:1/-1;text-align:center;padding:48px;color:var(--muted);font-size:16px;">No products found. Try a different search.</p>`;
                 return;
             }
             list.forEach(p => {
@@ -1580,7 +1664,7 @@
                     <div class="img-wrap">
                         <img src="${p.img}" alt="${escapeHtml(p.title)}" loading="lazy">
                         ${badgeHtml}
-                        <button class="wish-btn" aria-label="Add to wishlist"><i class="far fa-heart"></i></button>
+                        <button class="wish-btn" aria-label="Add ${escapeHtml(p.title)} to wishlist"><i class="far fa-heart" aria-hidden="true"></i></button>
                     </div>
                     <div class="body">
                         <div class="category-tag">${p.category}</div>
@@ -1589,12 +1673,12 @@
                             <span class="price">$${p.price.toLocaleString()}</span>
                             ${oldPriceHtml}
                         </div>
-                        <div class="rating">
+                        <div class="rating" aria-label="Rating: ${p.rating} out of 5 stars">
                             ${stars} <span>(${p.reviews})</span>
                         </div>
                     </div>
                     <div class="footer">
-                        <button class="add-btn" data-id="${p.id}"><i class="fas fa-cart-plus"></i> Add</button>
+                        <button class="add-btn" data-id="${p.id}" aria-label="Add ${escapeHtml(p.title)} to cart"><i class="fas fa-cart-plus" aria-hidden="true"></i> Add</button>
                     </div>
                 `;
                 productsGrid.appendChild(el);
@@ -1616,7 +1700,7 @@
                 const el = document.createElement('div');
                 el.className = 'testimonial-card';
                 el.innerHTML = `
-                    <div class="stars">${stars}</div>
+                    <div class="stars" aria-label="Rating: ${t.stars} out of 5 stars">${stars}</div>
                     <blockquote>“${escapeHtml(t.text)}”</blockquote>
                     <div class="author">
                         <img class="avatar" src="${t.avatar}" alt="${escapeHtml(t.name)}" loading="lazy">
@@ -1657,7 +1741,7 @@
 
             if (btnEl) {
                 const orig = btnEl.innerHTML;
-                btnEl.innerHTML = '<i class="fas fa-check"></i> Added';
+                btnEl.innerHTML = '<i class="fas fa-check" aria-hidden="true"></i> Added';
                 btnEl.classList.add('added');
                 setTimeout(() => {
                     btnEl.innerHTML = orig;
@@ -1723,12 +1807,14 @@
         mobileToggle.addEventListener('click', () => {
             const isOpen = mobileMenu.style.display === 'block';
             mobileMenu.style.display = isOpen ? 'none' : 'block';
+            mobileToggle.setAttribute('aria-expanded', !isOpen);
             mobileToggle.innerHTML = isOpen ? '<i class="fas fa-bars"></i>' : '<i class="fas fa-times"></i>';
         });
 
         mobileMenu.querySelectorAll('a').forEach(link => {
             link.addEventListener('click', () => {
                 mobileMenu.style.display = 'none';
+                mobileToggle.setAttribute('aria-expanded', 'false');
                 mobileToggle.innerHTML = '<i class="fas fa-bars"></i>';
             });
         });
@@ -1744,7 +1830,7 @@
             cartCount++;
             updateCartCount();
             const orig = this.innerHTML;
-            this.innerHTML = '<i class="fas fa-check"></i> Added!';
+            this.innerHTML = '<i class="fas fa-check" aria-hidden="true"></i> Added!';
             this.style.background = 'var(--success)';
             setTimeout(() => {
                 this.innerHTML = orig;
@@ -1787,11 +1873,12 @@
         window.addEventListener('resize', () => {
             if (window.innerWidth > 768) {
                 mobileMenu.style.display = 'none';
+                mobileToggle.setAttribute('aria-expanded', 'false');
                 mobileToggle.innerHTML = '<i class="fas fa-bars"></i>';
             }
         });
 
-        console.log('🚀 NexusShop — modernized e‑commerce demo loaded.');
+        console.log('🚀 NexusShop — deeply user-friendly e‑commerce demo loaded.');
     </script>
 
 </body>
